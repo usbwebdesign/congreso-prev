@@ -1,0 +1,177 @@
+.sectionContainer {
+  color: #ffffff;
+  padding: 100px 4% 120px 4%;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* --- SECCIÓN ACCESO --- */
+.accessHeader {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.accessTitle {
+  font-size: 3.2rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.accentLine {
+  width: 40px;
+  height: 3px;
+  background-color: #2563eb; /* Azul corporativo sutil */
+  margin: 12px auto 0 auto;
+  border-radius: 99px;
+}
+
+/* --- SUB-BLOQUE CRECIMIENTO --- */
+.growthHeader {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.growthTitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #f3f4f6;
+  margin: 0 0 14px 0;
+}
+
+.growthSubtitle {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #9ca3af;
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* --- GRID DE TARJETAS (BENTO LOOK) --- */
+.cardsGrid {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  max-width: 880px;
+  margin: 0 auto 56px auto;
+}
+
+.ticketCard {
+  flex: 1;
+  background-color: #18181b; /* Zinc bento de alta gama */
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 24px;
+  padding: 48px 40px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+}
+
+.ticketCard:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.planTitle {
+  font-size: 1.9rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 36px 0;
+  text-align: center;
+}
+
+/* Selectores de color premium basados en el tipo de pasaporte */
+.licenciatura {
+  color: #93c5fd; /* Azul cielo sutil */
+}
+
+.posgrado {
+  color: #c084fc; /* Púrpura orquídea */
+}
+
+/* --- LISTADO DE BENEFICIOS --- */
+.benefitsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.benefitItem {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 16px;
+}
+
+.benefitItem:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.benefitText {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #d1d5db;
+  margin: 0;
+}
+
+.benefitLabel {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* --- BOTÓN DE COMPRA CENTRAL --- */
+.actionWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.ctaButton {
+  background-color: #1d4ed8; /* Azul eléctrico premium */
+  color: #ffffff;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 10px 25px rgba(29, 78, 216, 0.3);
+  border: none;
+  padding: 16px 48px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 99px; /* Botón píldora como en el mockup */
+  cursor: pointer;
+}
+
+.ctaButton:hover {
+  background-color: #2563eb;
+  transform: scale(1.02);
+}
+
+.ctaButton:active {
+  transform: scale(0.99);
+}
+
+/* --- RESPONSIVE MODES --- */
+@media (max-width: 768px) {
+  .sectionContainer { padding: 80px 6% 100px 6%; }
+  .accessTitle { font-size: 2.6rem; }
+  .growthTitle { font-size: 1.5rem; }
+  
+  .cardsGrid {
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .ticketCard {
+    padding: 36px 28px;
+  }
+  
+  .planTitle {
+    margin-bottom: 28px;
+  }
+  
+  .ctaButton {
+    width: 100%; /* Ocupa ancho total en móviles para ergonomía */
+    text-align: center;
+  }
+}

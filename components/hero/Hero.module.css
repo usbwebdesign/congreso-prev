@@ -1,0 +1,102 @@
+.heroContainer {
+  position: relative;
+  height: 100dvh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #000000;
+}
+
+.backgroundImageWrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.bgImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+}
+
+.overlayGradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.6) 60%,
+    #000000 100%
+  );
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 24px;
+  width: 100%;
+}
+
+.logoWrapper {
+  max-width: 540px;
+  width: 100%;
+  margin-bottom: 48px;
+}
+
+.logo {
+  width: 100%;
+  height: auto;
+}
+
+/* REAJUSTE: Ahora maneja el comportamiento de enlace (a) conservando el diseño */
+.ctaButton {
+  margin-top: 48px;
+  background-color: #1d4ed8; /* Azul eléctrico premium */
+  color: #ffffff;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 10px 25px rgba(29, 78, 216, 0.3);
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 16px 60px;
+  border-radius: 9999px;
+  text-decoration: none; /* Quitamos la línea de enlace por defecto */
+  display: inline-block; /* Importante para que respete los paddings */
+  cursor: pointer;
+  position: relative;
+  top: 5vh; 
+}
+
+.ctaButton:hover {
+  background-color: #2563eb;
+  transform: scale(1.02);
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* REAJUSTE: Ahora es un enlace interactivo */
+.scrollArrow {
+  position: absolute;
+  bottom: 100px;
+  animation: bounce 2s infinite;
+  opacity: 0.6;
+  color: #ffffff;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  z-index: 10; /* Asegura que quede por encima del fondo */
+}
+
+.scrollArrow:hover {
+  opacity: 1;
+}
