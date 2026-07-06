@@ -81,7 +81,7 @@ export default function Location() {
         <div className={styles.cardDates}>
           <div className={styles.dateMeta}>
             <h4 className={styles.dateLabel}>Días</h4>
-            <p className={styles.dateDays}>6 y 7 de Noviembre</p>
+            <p className={styles.dateDays}>20 y 21 de Octubre</p>
             
             <div className={styles.timeRow}>
               <div className={styles.calendarIconWrapper}>

@@ -147,27 +147,61 @@
   letter-spacing: 0.5px;
 }
 
-/* Costos */
-.totalCostBlock {
-  background: #131316;
+/* Nueva Tarjeta de Costo con Jerarquía Refinada */
+.pricingHeaderCard {
+  background: linear-gradient(135deg, #131316 0%, #16161a 100%);
   border: 1px solid #222226;
-  border-radius: 12px;
-  padding: 16px;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.categoryBadgeWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.categoryBadge {
+  background: rgba(59, 153, 252, 0.08);
+  border: 1px solid rgba(59, 153, 252, 0.3);
+  color: #3b99fc;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.75px;
+}
+
+.priceRow {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
+  align-items: baseline;
+  border-top: 1px solid #1e1e22;
+  padding-top: 12px;
 }
 
 .totalLabel {
   color: #a1a1aa;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .totalAmount {
   color: #ffffff;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.currencyCode {
+  font-size: 12px;
+  color: #71717a;
+  font-weight: 500;
+  margin-left: 4px;
 }
 
 .paymentsGrid {
@@ -398,10 +432,7 @@
   background: #3f3f46;
 }
 
-/* ==========================================================================
-   ESTILOS PARA EL AJUSTADOR DE PAGOS DINÁMICO
-   ========================================================================== */
-
+/* Ajustador de rango */
 .adjusterCard {
   background-color: #111112;
   border: 1px solid #1e1e22;
@@ -431,7 +462,6 @@
   font-weight: 500;
 }
 
-/* Custom Input Range */
 .rangeSlider {
   -webkit-appearance: none;
   width: 100%;

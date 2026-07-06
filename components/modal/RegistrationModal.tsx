@@ -9,7 +9,6 @@ interface RegistrationModalProps {
   onClose: () => void;
 }
 
-type Category = 'licenciatura' | 'posgrado';
 type Month = 'Marzo' | 'Abril' | 'Mayo' | 'Junio' | 'Julio' | 'Agosto' | 'Septiembre' | 'Octubre';
 
 // Arreglo maestro de meses disponibles para el cálculo
@@ -17,7 +16,6 @@ const ALL_MONTHS: Month[] = ['Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto
 
 export default function RegistrationModal({ isOpen, onClose }: RegistrationModalProps) {
   const [copied, setCopied] = useState(false);
-  const [activeCategory, setActiveCategory] = useState<Category>('licenciatura');
   
   // Guardamos el índice del mes en el que el usuario quiere empezar a pagar
   const [startMonthIndex, setStartMonthIndex] = useState<number>(0); 
@@ -36,14 +34,11 @@ export default function RegistrationModal({ isOpen, onClose }: RegistrationModal
     }
   };
 
-  // 1. Definición de Totales base e Inscripción base
-  const totalAmount = activeCategory === 'licenciatura' ? 1950 : 1000;
-  
-  // La inscripción base (si empieza en Marzo) es 450 para lic y 250 para posgrado
-  const baseInscription = activeCategory === 'licenciatura' ? 450 : 250;
+  // Definición de Totales base e Inscripción base (Solo Licenciatura)
+  const totalAmount = 1950;
+  const baseInscription = 450;
 
-  // 2. MOTOR DE CÁLCULO DINÁMICO
-  // Filtramos los meses restantes desde el mes seleccionado
+  // MOTOR DE CÁLCULO DINÁMICO
   const remainingMonths = ALL_MONTHS.slice(startMonthIndex);
   const totalPaymentsCount = remainingMonths.length;
 
@@ -53,18 +48,15 @@ export default function RegistrationModal({ isOpen, onClose }: RegistrationModal
     desc?: string;
   }
 
-const calculatedPayments: PaymentSchedule[] = [];
+  const calculatedPayments: PaymentSchedule[] = [];
 
   if (totalPaymentsCount === 1) {
-    // Si solo queda Octubre, se liquida el total de un solo golpe
     calculatedPayments.push({
       month: remainingMonths[0],
       amount: `$${totalAmount.toLocaleString()}`,
       desc: 'Liquidación Total'
     });
   } else {
-    // Si hay más meses, respetamos una proporción donde el primer mes es Inscripción (más alto)
-    // Ajustamos la inscripción para que no desfase el resto si se inscriben muy tarde
     const inscription = totalPaymentsCount >= 6 ? baseInscription : Math.round(totalAmount * 0.3);
     const restTotal = totalAmount - inscription;
     const standardPayment = Math.round(restTotal / (totalPaymentsCount - 1));
@@ -77,7 +69,6 @@ const calculatedPayments: PaymentSchedule[] = [];
           desc: 'Inscripción'
         });
       } else if (idx === totalPaymentsCount - 1) {
-        // El último mes ajusta los decimales o diferencias de redondeo
         const accumulated = inscription + (standardPayment * (totalPaymentsCount - 2));
         const lastPayment = totalAmount - accumulated;
         calculatedPayments.push({
@@ -119,26 +110,8 @@ const calculatedPayments: PaymentSchedule[] = [];
               <Calendar size={18} className={s.iconBlue} />
               <h3>Costo y Financiamiento</h3>
             </div>
-            
-            {/* Tabs de Categoría */}
-            <div className={s.tabContainer}>
-              <button 
-                type="button"
-                className={`${s.tabButton} ${activeCategory === 'licenciatura' ? s.tabActive : ''}`}
-                onClick={() => setActiveCategory('licenciatura')}
-              >
-                Licenciatura
-              </button>
-              <button 
-                type="button"
-                className={`${s.tabButton} ${activeCategory === 'posgrado' ? s.tabActive : ''}`}
-                onClick={() => setActiveCategory('posgrado')}
-              >
-                Posgrado
-              </button>
-            </div>
 
-            {/* CONTROL AJUSTADOR DINÁMICO (UX Premium) */}
+            {/* CONTROL AJUSTADOR DINÁMICO */}
             <div className={s.adjusterCard}>
               <div className={s.adjusterHeader}>
                 <SlidersHorizontal size={14} className={s.iconBlue} />
@@ -157,9 +130,15 @@ const calculatedPayments: PaymentSchedule[] = [];
               </div>
             </div>
             
-            <div className={s.totalCostBlock}>
-              <span className={s.totalLabel}>Costo total ({activeCategory})</span>
-              <span className={s.totalAmount}>${totalAmount.toLocaleString()} MXN</span>
+            {/* NUEVA JERARQUÍA VISUAL PARA LICENCIATURA */}
+            <div className={s.pricingHeaderCard}>
+              <div className={s.categoryBadgeWrapper}>
+                <span className={s.categoryBadge}>Nivel Licenciatura</span>
+              </div>
+              <div className={s.priceRow}>
+                <span className={s.totalLabel}>Inversión Total del Congreso</span>
+                <span className={s.totalAmount}>${totalAmount.toLocaleString()} <small className={s.currencyCode}>MXN</small></span>
+              </div>
             </div>
 
             <p className={s.sectionSubtitle}>Plan de pagos personalizado:</p>
